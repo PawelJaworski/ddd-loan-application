@@ -1,12 +1,14 @@
-package pl.javorek.ddd.service.applicationforloan.application.event;
+package pl.javorek.ddd.service.applicationforloan.application.eventlistener;
 
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.javorek.ddd.service.applicationforloan.application.readmodel.LoanApplicationState;
+import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanState;
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.LoanApplicationStateProjector;
 import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent;
 
 @Service
+@Builder
 @RequiredArgsConstructor
 public class DomainEventListenerComposite implements DomainEventListener {
 
@@ -14,7 +16,7 @@ public class DomainEventListenerComposite implements DomainEventListener {
     private final ExternalEventPublisher eventPublisher;
 
     @Override
-    public void onDomainEvent(DomainEvent event, LoanApplicationState state) {
+    public void onDomainEvent(DomainEvent event, ApplicationForALoanState state) {
         loanApplicationStateProjector.onDomainEvent(event, state);
         eventPublisher.onDomainEvent(event, state);
     }
