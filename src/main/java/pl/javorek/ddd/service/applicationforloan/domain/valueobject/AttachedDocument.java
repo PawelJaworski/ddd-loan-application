@@ -1,5 +1,6 @@
-package pl.javorek.ddd.service.loanapplication.domain;
+package pl.javorek.ddd.service.applicationforloan.domain.valueobject;
 
+import jakarta.persistence.Embeddable;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -8,7 +9,8 @@ import java.time.LocalDate;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @RequiredArgsConstructor
 @Builder
-public class AttachedDocumentVo {
+@Embeddable
+public class AttachedDocument {
     private AttachedDocumentType type;
     private String location;
     private LocalDate validFrom;

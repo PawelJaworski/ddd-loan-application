@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.loanapplication.application.cmd;
+package pl.javorek.ddd.service.applicationforloan.application.cmd;
 
 import java.math.BigDecimal;
 
