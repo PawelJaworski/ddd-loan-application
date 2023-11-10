@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerComposite;
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanState;
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepository;
-import pl.javorek.ddd.service.applicationforloan.application.readmodel.LoanApplicationStateProjector;
+import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateProjector;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
 
@@ -20,16 +20,16 @@ import java.util.UUID;
 public class ApplicationForALoanCmdFacade {
     private final ApplicationForALoanStateRepository applicationForALoanStateRepository;
     private final DomainEventListenerComposite domainEventListenerComposite;
+    private final ApplicationForALoanStateProjector applicationForALoanStateProjector;
 
 
     public UUID requestForLoan(RequestForALoanCmd cmd) {
         var loanRequestor = new LoanRequestor();
         var event = ApplicationForALoan.requestForLoan(loanRequestor);
 
-        var state = new ApplicationForALoanState(event.id());
+        var state = applicationForALoanStateProjector.accept(event, new ApplicationForALoanState(event.id()));
         domainEventListenerComposite.onDomainEvent(event, state);
 
-        applicationForALoanStateRepository.save(state);
 
         return event.id();
     }

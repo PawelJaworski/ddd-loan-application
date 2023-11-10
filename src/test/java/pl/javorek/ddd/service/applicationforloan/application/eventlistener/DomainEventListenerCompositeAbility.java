@@ -1,10 +1,10 @@
 package pl.javorek.ddd.service.applicationforloan.application.eventlistener;
 
-import pl.javorek.ddd.service.applicationforloan.application.readmodel.LoanApplicationStateProjectorAbility;
+import pl.javorek.ddd.service.applicationforloan.application.outbound.EmailPublisherAbility;
 
 public interface DomainEventListenerCompositeAbility {
     DomainEventListenerComposite INSTANCE = DomainEventListenerComposite.builder()
-            .loanApplicationStateProjector(LoanApplicationStateProjectorAbility.INSTANCE)
+            .emailPublisher(EmailPublisherAbility.INSTANCE)
             .eventPublisher(ExternalEventPublisherAbility.INSTANCE)
             .build();
 
