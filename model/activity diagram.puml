@@ -1,0 +1,6 @@
+@startuml
+Client -> "Bank agent" : Loan application submitted
+Client -> "Bank agent" : Required documents provided
+"Bank agent" -> "Bank analyst" : Loan starting request sent
+"Bank analyst" -> "Bank agent" : Loan started
+@enduml

@@ -5,9 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerComposite;
-import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanState;
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
+import pl.javorek.ddd.service.applicationforloan.domain.error.ApplicationForALoanException;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
 
 import java.util.UUID;
@@ -20,7 +20,7 @@ public class ApplicationForALoanCmdFacade {
     private final ApplicationForALoanStateRepository applicationForALoanStateRepository;
     private final DomainEventListenerComposite domainEventListenerComposite;
 
-    public UUID requestForLoan(RequestForALoanCmd cmd) {
+    public UUID requestForLoan(SubmitLoanApplicationCmd cmd) {
         var loanRequestor = LoanRequestor.builder()
                 .name(cmd.name())
                 .lastName(cmd.lastName())
@@ -32,5 +32,9 @@ public class ApplicationForALoanCmdFacade {
         domainEventListenerComposite.onDomainEvent(event, state);
 
         return state.getId();
+    }
+
+    public void sendRequestForLoanStart(SendRequestForLoanStartCmd cmd) {
+        throw new ApplicationForALoanException("send-request-for-loan-start.error.not-all-required-documents-provided");
     }
 }

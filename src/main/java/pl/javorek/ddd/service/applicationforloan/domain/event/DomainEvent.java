@@ -5,17 +5,25 @@ import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationN
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public sealed interface DomainEvent {
     String modifiedBy();
     LocalDateTime modificationTime();
 
     @Builder
-    record LoanRequested(String modifiedBy, LocalDateTime modificationTime, ApplicationNumber applicationNumber,
-                         LoanRequestor loanRequestor) implements DomainEvent {
-        public LoanRequested {
+    record LoanApplicationSubmitted(String modifiedBy, LocalDateTime modificationTime, ApplicationNumber applicationNumber,
+                                    LoanRequestor loanRequestor) implements DomainEvent {
+        public LoanApplicationSubmitted {
             if (modificationTime == null) modificationTime = LocalDateTime.now();
         }
     }
+
+    @Builder
+    record RequiredDocumentsProvided() {}
+
+    @Builder
+    record LoanStartingRequestSent() {}
+
+    @Builder
+    record LoanStarted() {}
 }

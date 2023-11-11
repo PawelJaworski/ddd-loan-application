@@ -12,13 +12,21 @@ public interface ApplicationForALoanCmdFacadeAbility {
             .domainEventListenerComposite(DomainEventListenerCompositeAbility.INSTANCE)
             .build();
 
-    default UUID loan_requested() {
-        var cmd = RequestForALoanCmd.builder()
+    default UUID loan_application_submitted() {
+        var cmd = SubmitLoanApplicationCmd.builder()
                 .name("Jan")
                 .lastName("Kowalski")
                 .loanAmount(new BigDecimal("10000.00"))
                 .build();
         return getApplicationForALoanCmdFacade().requestForLoan(cmd);
+    }
+
+    default void request_for_loan_start_sent(UUID id) {
+        var cmd = SendRequestForLoanStartCmd.builder()
+                .id(id)
+                .build();
+
+        getApplicationForALoanCmdFacade().sendRequestForLoanStart(cmd);
     }
 
     default ApplicationForALoanCmdFacade getApplicationForALoanCmdFacade() {
