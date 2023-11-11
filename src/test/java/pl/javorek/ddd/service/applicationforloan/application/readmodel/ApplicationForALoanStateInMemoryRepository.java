@@ -7,7 +7,9 @@ public class ApplicationForALoanStateInMemoryRepository implements ApplicationFo
 
     @Override
     public ApplicationForALoanState save(ApplicationForALoanState entity) {
-        return data.put(entity.getId(), entity);
+        data.put(entity.getId(), entity);
+
+        return entity;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package pl.javorek.ddd.service.applicationforloan.application.cmd;
 
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerCompositeAbility;
-import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateProjectorAbility;
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepositoryAbility;
 
 import java.math.BigDecimal;
@@ -9,7 +8,6 @@ import java.util.UUID;
 
 public interface ApplicationForALoanCmdFacadeAbility {
     ApplicationForALoanCmdFacade INSTANCE = ApplicationForALoanCmdFacade.builder()
-            .applicationForALoanStateProjector(ApplicationForALoanStateProjectorAbility.INSTANCE)
             .applicationForALoanStateRepository(ApplicationForALoanStateRepositoryAbility.INSTANCE)
             .domainEventListenerComposite(DomainEventListenerCompositeAbility.INSTANCE)
             .build();

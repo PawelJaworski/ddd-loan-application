@@ -8,8 +8,11 @@ import java.util.UUID;
 
 public class ApplicationForALoan {
     public static DomainEvent.LoanRequested requestForLoan(LoanRequestor loanRequestor) {
-        var id = UUID.randomUUID();
         var applicationNumber = new ApplicationNumber();
-        return new DomainEvent.LoanRequested(id, applicationNumber, loanRequestor);
+        return DomainEvent.LoanRequested.builder()
+                .modifiedBy("testUser")
+                .applicationNumber(applicationNumber)
+                .loanRequestor(loanRequestor)
+                .build();
     }
 }
