@@ -12,7 +12,4 @@ import java.time.LocalDate;
 @Embeddable
 public class AttachedDocument {
     private AttachedDocumentType type;
-    private String location;
-    private LocalDate validFrom;
-    private LocalDate validTo;
 }

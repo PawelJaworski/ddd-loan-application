@@ -1,6 +1,8 @@
 @startuml
-Client -> "Bank agent" : Loan application submitted
-Client -> "Bank agent" : Required documents provided
-"Bank agent" -> "Bank analyst" : Loan starting request sent
-"Bank analyst" -> "Bank agent" : Loan started
+Client -> "Bank agent" : Submit loan application
+"Bank agent" --> "Client" : Loan application submitted
+Client -> "Bank agent" : Provide requred documents
+"Bank agent" -> "Bank analyst" : Send request for loan start
+"Bank analyst" --> "Bank agent" : Loan started
+"Bank agent" --> "Client" : Loan started communication sent
 @enduml

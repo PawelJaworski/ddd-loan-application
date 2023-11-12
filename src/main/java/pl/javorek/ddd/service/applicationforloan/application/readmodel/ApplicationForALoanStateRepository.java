@@ -1,6 +1,7 @@
 package pl.javorek.ddd.service.applicationforloan.application.readmodel;
 
 import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent;
+import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent.RequestForLoanStartSent;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType;
 
 import java.util.Optional;
@@ -14,6 +15,21 @@ public interface ApplicationForALoanStateRepository {
         state.setApplicationStatus(ApplicationStatusType.DRAFT);
 
         return save(state);
+    }
+
+    default ApplicationForALoanState save(ApplicationForALoanState state, DomainEvent event) {
+        if (event instanceof RequestForLoanStartSent requestForLoanStartSent) {
+            return saveRequestForLoanStartSent(state, requestForLoanStartSent);
+        }
+
+        return state;
+    }
+
+    private ApplicationForALoanState saveRequestForLoanStartSent(ApplicationForALoanState state,
+                                                                 RequestForLoanStartSent requestForLoanStartSent) {
+        state.setApplicationStatus(ApplicationStatusType.WAITING_FOR_APPROVAL);
+
+        return state;
     }
 
     ApplicationForALoanState save(ApplicationForALoanState applicationForALoanState);

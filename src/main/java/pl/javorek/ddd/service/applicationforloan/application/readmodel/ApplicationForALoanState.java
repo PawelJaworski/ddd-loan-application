@@ -6,6 +6,7 @@ import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationN
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocument;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,12 +22,17 @@ public class ApplicationForALoanState {
 
     @ElementCollection
     @OrderColumn
-    private List<AttachedDocument> attachedDocuments;
+    @Setter(AccessLevel.NONE)
+    private List<AttachedDocument> attachedDocuments = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private ApplicationStatusType applicationStatus;
 
     public ApplicationForALoanState(UUID id) {
         this.id = id;
+    }
+
+    public void addDocument(AttachedDocument document) {
+        attachedDocuments.add(document);
     }
 }

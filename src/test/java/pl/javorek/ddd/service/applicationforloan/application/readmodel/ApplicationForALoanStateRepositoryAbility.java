@@ -31,6 +31,14 @@ public interface ApplicationForALoanStateRepositoryAbility {
         Assertions.assertEquals(actual, expected);
     }
 
+    default void expect_waiting_for_approval(UUID id) {
+        var actual = getApplicationForALoanStateRepository().findOneById(id)
+                .orElseThrow()
+                .getApplicationStatus();
+
+        Assertions.assertEquals(ApplicationStatusType.WAITING_FOR_APPROVAL, actual);
+    }
+
     default ApplicationForALoanStateRepository getApplicationForALoanStateRepository() {
         return INSTANCE;
     }

@@ -19,10 +19,11 @@ public sealed interface DomainEvent {
     }
 
     @Builder
-    record RequiredDocumentsProvided() {}
-
-    @Builder
-    record LoanStartingRequestSent() {}
+    record RequestForLoanStartSent(String modifiedBy, LocalDateTime modificationTime) implements DomainEvent {
+        public RequestForLoanStartSent {
+            if (modificationTime == null) modificationTime = LocalDateTime.now();
+        }
+    }
 
     @Builder
     record LoanStarted() {}
