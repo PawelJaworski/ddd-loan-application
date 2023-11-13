@@ -1,0 +1,1 @@
+<img src="model/activity_diagram.svg"/>
