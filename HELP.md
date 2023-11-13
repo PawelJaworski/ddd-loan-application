@@ -1,1 +1,1 @@
-<img src="model/activity_diagram.svg"/>
+<img alt="model" src="model/activity_diagram.svg"/>
