@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerComposite;
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
-import pl.javorek.ddd.service.applicationforloan.domain.error.ApplicationForALoanException;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
 
 import java.util.UUID;
@@ -22,7 +21,7 @@ public class ApplicationForALoanCmdFacade {
     private final AttachedDocumentMapper attachedDocumentMapper;
     private final ApplicationForALoanMapper applicationForALoanMapper;
 
-    public UUID requestForLoan(SubmitLoanApplicationCmd cmd) {
+    public UUID submitLoanApplication(SubmitLoanApplicationCmd cmd) {
         var loanRequestor = LoanRequestor.builder()
                 .name(cmd.name())
                 .lastName(cmd.lastName())

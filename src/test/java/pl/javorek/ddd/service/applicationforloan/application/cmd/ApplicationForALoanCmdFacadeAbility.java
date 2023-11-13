@@ -21,7 +21,7 @@ public interface ApplicationForALoanCmdFacadeAbility {
                 .lastName("Kowalski")
                 .loanAmount(new BigDecimal("10000.00"))
                 .build();
-        return getApplicationForALoanCmdFacade().requestForLoan(cmd);
+        return getApplicationForALoanCmdFacade().submitLoanApplication(cmd);
     }
 
     default void all_required_documents_provided(UUID id) {
