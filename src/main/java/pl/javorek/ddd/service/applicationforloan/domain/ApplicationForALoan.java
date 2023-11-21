@@ -4,6 +4,7 @@ import lombok.Value;
 import pl.javorek.ddd.service.applicationforloan.domain.error.ApplicationForALoanException;
 import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent;
 import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent.RequestForLoanStartSent;
+import pl.javorek.ddd.service.applicationforloan.domain.policy.ApplicationNumberPolicy;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocument;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocumentType;
@@ -22,11 +23,11 @@ public class ApplicationForALoan {
 
     List<AttachedDocument> attachedDocuments;
 
-    public static DomainEvent.LoanApplicationSubmitted requestForLoan(LoanRequestor loanRequestor) {
-        var applicationNumber = new ApplicationNumber();
+    public static DomainEvent.LoanApplicationSubmitted requestForLoan(LoanRequestor loanRequestor,
+                                                                      ApplicationNumberPolicy applicationNumberPolicy) {
         return DomainEvent.LoanApplicationSubmitted.builder()
                 .modifiedBy("testUser")
-                .applicationNumber(applicationNumber)
+                .applicationNumber(applicationNumberPolicy.getNextApplicationNumber())
                 .loanRequestor(loanRequestor)
                 .build();
     }

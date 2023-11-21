@@ -41,4 +41,6 @@ public interface ApplicationForALoanStateRepository {
 
     ApplicationForALoanState save(ApplicationForALoanState applicationForALoanState);
     Optional<ApplicationForALoanState> findOneById(UUID id);
+
+    Optional<String> findMaxApplicationNumberAsString();
 }

@@ -1,5 +1,7 @@
 package pl.javorek.ddd.service.applicationforloan.application.readmodel;
 
+import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
+
 import java.util.*;
 
 public class ApplicationForALoanStateInMemoryRepository implements ApplicationForALoanStateRepository {
@@ -17,6 +19,14 @@ public class ApplicationForALoanStateInMemoryRepository implements ApplicationFo
         return data.values().stream()
                 .filter(it -> it.getId().equals(id))
                 .findFirst();
+    }
+
+    @Override
+    public Optional<String> findMaxApplicationNumberAsString() {
+        return data.values().stream()
+                .map(ApplicationForALoanState::getApplicationNumber)
+                .map(ApplicationNumber::getAsString)
+                .max(Comparator.naturalOrder());
     }
 
 
