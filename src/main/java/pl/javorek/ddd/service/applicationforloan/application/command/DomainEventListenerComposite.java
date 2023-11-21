@@ -15,9 +15,11 @@ class DomainEventListenerComposite implements DomainEventListener {
 
     private final ExternalEventPublisher eventPublisher;
     private final EmailPublisher emailPublisher;
+    private final AuditProjection auditProjection;
 
     @Override
     public void onDomainEvent(DomainEvent event, ApplicationForALoanEntity state) {
+        auditProjection.onDomainEvent(event, state);
         emailPublisher.onDomainEvent(event, state);
         eventPublisher.onDomainEvent(event, state);
     }
