@@ -1,9 +1,7 @@
 package pl.javorek.ddd.service.applicationforloan.domain;
 
 import lombok.Value;
-import pl.javorek.ddd.service.applicationforloan.domain.error.ApplicationForALoanException;
-import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent;
-import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent.RequestForLoanStartSent;
+import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent.RequestForLoanStartSent;
 import pl.javorek.ddd.service.applicationforloan.domain.policy.ApplicationNumberPolicy;
 import pl.javorek.ddd.service.applicationforloan.domain.policy.BankAgentPolicy;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.*;

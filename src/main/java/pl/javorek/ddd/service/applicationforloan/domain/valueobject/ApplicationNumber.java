@@ -1,7 +1,7 @@
 package pl.javorek.ddd.service.applicationforloan.domain.valueobject;
 
 import lombok.Value;
-import pl.javorek.ddd.service.applicationforloan.domain.error.ApplicationForALoanException;
+import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoanException;
 
 @Value
 public class ApplicationNumber {

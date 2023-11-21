@@ -1,7 +1,7 @@
 package pl.javorek.ddd.service.applicationforloan.application.persistence;
 
-import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent;
-import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent.RequestForLoanStartSent;
+import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
+import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent.RequestForLoanStartSent;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocument;
 

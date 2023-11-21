@@ -1,7 +1,6 @@
-package pl.javorek.ddd.service.applicationforloan.domain.event;
+package pl.javorek.ddd.service.applicationforloan.domain;
 
 import lombok.Builder;
-import lombok.NonNull;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
 
