@@ -8,10 +8,10 @@ import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocu
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ApplicationForALoanStateRepository {
+public interface ApplicationForALoanEntityRepository {
 
-    default ApplicationForALoanState save(DomainEvent.LoanApplicationSubmitted event) {
-        var state = new ApplicationForALoanState(UUID.randomUUID());
+    default ApplicationForALoanEntity save(DomainEvent.LoanApplicationSubmitted event) {
+        var state = new ApplicationForALoanEntity(UUID.randomUUID());
         state.setApplicationNumber(event.applicationNumber());
         state.setApplicationStatus(ApplicationStatusType.DRAFT);
         state.setLoanRequestor(event.loanRequestor());
@@ -19,13 +19,13 @@ public interface ApplicationForALoanStateRepository {
         return save(state);
     }
 
-    default ApplicationForALoanState save(ApplicationForALoanState state, AttachedDocument attachedDocument) {
+    default ApplicationForALoanEntity save(ApplicationForALoanEntity state, AttachedDocument attachedDocument) {
         state.addDocument(attachedDocument);
 
         return state;
     }
 
-    default ApplicationForALoanState save(ApplicationForALoanState state, DomainEvent event) {
+    default ApplicationForALoanEntity save(ApplicationForALoanEntity state, DomainEvent event) {
         if (event instanceof RequestForLoanStartSent requestForLoanStartSent) {
             return saveRequestForLoanStartSent(state, requestForLoanStartSent);
         }
@@ -33,15 +33,15 @@ public interface ApplicationForALoanStateRepository {
         return state;
     }
 
-    private ApplicationForALoanState saveRequestForLoanStartSent(ApplicationForALoanState state,
-                                                                 RequestForLoanStartSent requestForLoanStartSent) {
+    private ApplicationForALoanEntity saveRequestForLoanStartSent(ApplicationForALoanEntity state,
+                                                                  RequestForLoanStartSent requestForLoanStartSent) {
         state.setApplicationStatus(ApplicationStatusType.WAITING_FOR_APPROVAL);
 
         return state;
     }
 
-    ApplicationForALoanState save(ApplicationForALoanState applicationForALoanState);
-    Optional<ApplicationForALoanState> findOneById(UUID id);
+    ApplicationForALoanEntity save(ApplicationForALoanEntity applicationForALoanEntity);
+    Optional<ApplicationForALoanEntity> findOneById(UUID id);
 
     Optional<String> findMaxApplicationNumberAsString();
 }

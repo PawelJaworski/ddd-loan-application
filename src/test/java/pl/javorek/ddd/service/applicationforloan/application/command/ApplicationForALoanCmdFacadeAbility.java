@@ -1,7 +1,7 @@
 package pl.javorek.ddd.service.applicationforloan.application.command;
 
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerCompositeAbility;
-import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanStateRepositoryAbility;
+import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntityRepositoryAbility;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocumentType;
 
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface ApplicationForALoanCmdFacadeAbility {
     ApplicationForALoanCmdFacade INSTANCE = ApplicationForALoanCmdFacade.builder()
-            .applicationForALoanStateRepository(ApplicationForALoanStateRepositoryAbility.INSTANCE)
+            .applicationForALoanEntityRepository(ApplicationForALoanEntityRepositoryAbility.INSTANCE)
             .domainEventListenerComposite(DomainEventListenerCompositeAbility.INSTANCE)
             .domainFactory(DomainFactoryAbility.INSTANCE)
             .build();

@@ -3,7 +3,7 @@ package pl.javorek.ddd.service.applicationforloan.application.command;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanState;
+import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntity;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
 import pl.javorek.ddd.service.applicationforloan.domain.policy.ApplicationNumberPolicy;
 import pl.javorek.ddd.service.applicationforloan.domain.policy.BankAgentPolicy;
@@ -36,7 +36,7 @@ class DomainFactory {
         return new ApplicationForALoan(applicationNumberPolicy, bankAgentPolicy, requiredDocuments);
     }
 
-    ApplicationForALoan newApplicationForALoan(ApplicationForALoanState state) {
+    ApplicationForALoan newApplicationForALoan(ApplicationForALoanEntity state) {
         var requiredDocuments = new RequiredDocuments(state.getAttachedDocuments());
         return new ApplicationForALoan(applicationNumberPolicy, bankAgentPolicy, requiredDocuments);
     }

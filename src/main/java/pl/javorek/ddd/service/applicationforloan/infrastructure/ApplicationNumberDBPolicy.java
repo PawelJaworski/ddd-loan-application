@@ -3,7 +3,7 @@ package pl.javorek.ddd.service.applicationforloan.infrastructure;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanStateRepository;
+import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntityRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.policy.ApplicationNumberPolicy;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
 
@@ -11,11 +11,11 @@ import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationN
 @Builder
 @RequiredArgsConstructor
 public class ApplicationNumberDBPolicy implements ApplicationNumberPolicy {
-    private final ApplicationForALoanStateRepository applicationForALoanStateRepository;
+    private final ApplicationForALoanEntityRepository applicationForALoanEntityRepository;
 
     @Override
     public ApplicationNumber getNextApplicationNumber() {
-        return applicationForALoanStateRepository.findMaxApplicationNumberAsString()
+        return applicationForALoanEntityRepository.findMaxApplicationNumberAsString()
                 .map(it -> Integer.parseInt(it.replaceAll("\\D", "")))
                 .map(it -> it + 1)
                 .map(ApplicationNumber::new)

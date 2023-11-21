@@ -14,7 +14,7 @@ import java.util.UUID;
 @Entity
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ApplicationForALoanState {
+public class ApplicationForALoanEntity {
     @Id
     private UUID id;
 
@@ -32,7 +32,7 @@ public class ApplicationForALoanState {
     @Enumerated(EnumType.STRING)
     private ApplicationStatusType applicationStatus;
 
-    public ApplicationForALoanState(UUID id) {
+    public ApplicationForALoanEntity(UUID id) {
         this.id = id;
     }
 

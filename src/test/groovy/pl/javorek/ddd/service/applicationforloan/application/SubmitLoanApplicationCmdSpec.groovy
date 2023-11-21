@@ -1,14 +1,14 @@
 package pl.javorek.ddd.service.applicationforloan.application
 
 import pl.javorek.ddd.service.applicationforloan.application.command.ApplicationForALoanCmdFacadeAbility
-import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanStateRepositoryAbility
+import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntityRepositoryAbility
 import pl.javorek.ddd.service.applicationforloan.domain.BankAgentPolicyAbility
 import spock.lang.Specification
 
 import static pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType.DRAFT
 
 class SubmitLoanApplicationCmdSpec extends Specification implements ApplicationForALoanCmdFacadeAbility,
-        ApplicationForALoanStateRepositoryAbility, BankAgentPolicyAbility {
+        ApplicationForALoanEntityRepositoryAbility, BankAgentPolicyAbility {
 
     def setup() {
         log_as_bank_agent()

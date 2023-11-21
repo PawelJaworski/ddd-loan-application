@@ -5,17 +5,17 @@ import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationS
 
 import java.util.UUID;
 
-public interface ApplicationForALoanStateRepositoryAbility {
-    ApplicationForALoanStateRepository INSTANCE = new ApplicationForALoanStateInMemoryRepository();
+public interface ApplicationForALoanEntityRepositoryAbility {
+    ApplicationForALoanEntityRepository INSTANCE = new ApplicationForALoanEntityInMemoryRepository();
 
     default void expect_application_for_a_loan_is_saved(UUID id) {
-      var found = getApplicationForALoanStateRepository().findOneById(id);
+      var found = getApplicationForALoanEntityRepository().findOneById(id);
 
       Assertions.assertTrue(found.isPresent(), "Application for a loan with id " + id + " not found.");
     }
 
     default void expect_loan_application_number_is_assigned(UUID id) {
-        var actual = getApplicationForALoanStateRepository().findOneById(id)
+        var actual = getApplicationForALoanEntityRepository().findOneById(id)
                 .orElseThrow()
                 .getApplicationNumber()
                 .getAsString();
@@ -24,7 +24,7 @@ public interface ApplicationForALoanStateRepositoryAbility {
     }
 
     default void expect_application_status_is(UUID id, ApplicationStatusType expected) {
-        var actual = getApplicationForALoanStateRepository().findOneById(id)
+        var actual = getApplicationForALoanEntityRepository().findOneById(id)
                 .orElseThrow()
                 .getApplicationStatus();
 
@@ -32,14 +32,14 @@ public interface ApplicationForALoanStateRepositoryAbility {
     }
 
     default void expect_waiting_for_approval(UUID id) {
-        var actual = getApplicationForALoanStateRepository().findOneById(id)
+        var actual = getApplicationForALoanEntityRepository().findOneById(id)
                 .orElseThrow()
                 .getApplicationStatus();
 
         Assertions.assertEquals(ApplicationStatusType.WAITING_FOR_APPROVAL, actual);
     }
 
-    default ApplicationForALoanStateRepository getApplicationForALoanStateRepository() {
+    default ApplicationForALoanEntityRepository getApplicationForALoanEntityRepository() {
         return INSTANCE;
     }
 }

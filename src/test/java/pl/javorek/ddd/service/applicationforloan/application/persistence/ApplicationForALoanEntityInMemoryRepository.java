@@ -4,18 +4,18 @@ import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationN
 
 import java.util.*;
 
-public class ApplicationForALoanStateInMemoryRepository implements ApplicationForALoanStateRepository {
-    private final Map<UUID, ApplicationForALoanState> data = new HashMap<>();
+public class ApplicationForALoanEntityInMemoryRepository implements ApplicationForALoanEntityRepository {
+    private final Map<UUID, ApplicationForALoanEntity> data = new HashMap<>();
 
     @Override
-    public ApplicationForALoanState save(ApplicationForALoanState entity) {
+    public ApplicationForALoanEntity save(ApplicationForALoanEntity entity) {
         data.put(entity.getId(), entity);
 
         return entity;
     }
 
     @Override
-    public Optional<ApplicationForALoanState> findOneById(UUID id) {
+    public Optional<ApplicationForALoanEntity> findOneById(UUID id) {
         return data.values().stream()
                 .filter(it -> it.getId().equals(id))
                 .findFirst();
@@ -24,7 +24,7 @@ public class ApplicationForALoanStateInMemoryRepository implements ApplicationFo
     @Override
     public Optional<String> findMaxApplicationNumberAsString() {
         return data.values().stream()
-                .map(ApplicationForALoanState::getApplicationNumber)
+                .map(ApplicationForALoanEntity::getApplicationNumber)
                 .map(ApplicationNumber::getAsString)
                 .max(Comparator.naturalOrder());
     }
