@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.application.cmd;
+package pl.javorek.ddd.service.applicationforloan.application.command;
 
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationNumberPolicyAbility;
 import pl.javorek.ddd.service.applicationforloan.domain.BankAgentPolicyAbility;

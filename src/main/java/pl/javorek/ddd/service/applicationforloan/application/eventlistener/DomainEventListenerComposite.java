@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.javorek.ddd.service.applicationforloan.application.outbound.EmailPublisher;
-import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanState;
+import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanState;
 import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent;
 
 @Service

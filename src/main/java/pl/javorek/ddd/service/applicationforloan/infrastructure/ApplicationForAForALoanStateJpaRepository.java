@@ -2,8 +2,8 @@ package pl.javorek.ddd.service.applicationforloan.infrastructure;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanState;
-import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepository;
+import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanState;
+import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanStateRepository;
 
 import java.util.Optional;
 import java.util.UUID;

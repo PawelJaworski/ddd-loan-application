@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.application.readmodel;
+package pl.javorek.ddd.service.applicationforloan.application.persistence;
 
 import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent;
 import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent.RequestForLoanStartSent;

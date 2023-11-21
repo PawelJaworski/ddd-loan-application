@@ -1,11 +1,11 @@
-package pl.javorek.ddd.service.applicationforloan.application.cmd;
+package pl.javorek.ddd.service.applicationforloan.application.command;
 
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerComposite;
-import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepository;
+import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanStateRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
 
 import java.util.Optional;

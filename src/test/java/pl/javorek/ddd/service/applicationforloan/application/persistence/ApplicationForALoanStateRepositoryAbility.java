@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.application.readmodel;
+package pl.javorek.ddd.service.applicationforloan.application.persistence;
 
 import org.junit.jupiter.api.Assertions;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType;

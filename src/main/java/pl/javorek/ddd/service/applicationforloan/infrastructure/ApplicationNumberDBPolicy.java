@@ -3,7 +3,7 @@ package pl.javorek.ddd.service.applicationforloan.infrastructure;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepository;
+import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanStateRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.policy.ApplicationNumberPolicy;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
 

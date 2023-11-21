@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.application.cmd;
+package pl.javorek.ddd.service.applicationforloan.application.command;
 
 import lombok.Builder;
 

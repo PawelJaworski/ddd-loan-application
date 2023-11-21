@@ -1,7 +1,7 @@
-package pl.javorek.ddd.service.applicationforloan.application.cmd;
+package pl.javorek.ddd.service.applicationforloan.application.command;
 
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerCompositeAbility;
-import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepositoryAbility;
+import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanStateRepositoryAbility;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocumentType;
 
 import java.math.BigDecimal;
