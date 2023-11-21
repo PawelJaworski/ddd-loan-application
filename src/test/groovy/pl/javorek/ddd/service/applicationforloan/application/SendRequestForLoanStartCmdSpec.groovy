@@ -2,11 +2,16 @@ package pl.javorek.ddd.service.applicationforloan.application
 
 import pl.javorek.ddd.service.applicationforloan.application.cmd.ApplicationForALoanCmdFacadeAbility
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepositoryAbility
+import pl.javorek.ddd.service.applicationforloan.domain.BankAgentPolicyAbility
 import pl.javorek.ddd.service.applicationforloan.domain.error.ApplicationForALoanException
 import spock.lang.Specification
 
 class SendRequestForLoanStartCmdSpec extends Specification implements ApplicationForALoanCmdFacadeAbility,
-        ApplicationForALoanStateRepositoryAbility {
+        ApplicationForALoanStateRepositoryAbility, BankAgentPolicyAbility {
+
+    def setup() {
+        log_as_bank_agent()
+    }
 
     def "When send request for loan given not all required documents provided then error raised"() {
         given:

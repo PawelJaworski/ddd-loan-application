@@ -5,43 +5,36 @@ import pl.javorek.ddd.service.applicationforloan.domain.error.ApplicationForALoa
 import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent;
 import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent.RequestForLoanStartSent;
 import pl.javorek.ddd.service.applicationforloan.domain.policy.ApplicationNumberPolicy;
-import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
-import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocument;
-import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocumentType;
-import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocumentType.*;
+import pl.javorek.ddd.service.applicationforloan.domain.policy.BankAgentPolicy;
+import pl.javorek.ddd.service.applicationforloan.domain.valueobject.*;
 
 @Value
 public class ApplicationForALoan {
-    private static Set<AttachedDocumentType> REQUIRED_DOCUMENT_TYPES = Set.of(EMPLOYMENT_CERTIFICATE,
-            BANK_ACCOUNT_STATEMENT, GDPR);
 
-    List<AttachedDocument> attachedDocuments;
+    ApplicationNumberPolicy applicationNumberPolicy;
+    BankAgentPolicy bankAgentPolicy;
+    RequiredDocuments requiredDocuments;
 
-    public static DomainEvent.LoanApplicationSubmitted requestForLoan(LoanRequestor loanRequestor,
-                                                                      ApplicationNumberPolicy applicationNumberPolicy) {
+    public DomainEvent.LoanApplicationSubmitted requestForLoan(LoanRequestor loanRequestor) {
         return DomainEvent.LoanApplicationSubmitted.builder()
-                .modifiedBy("testUser")
+                .modifiedBy(bankAgentPolicy.getUsername())
                 .applicationNumber(applicationNumberPolicy.getNextApplicationNumber())
                 .loanRequestor(loanRequestor)
                 .build();
     }
 
     public RequestForLoanStartSent sendRequestForLoanStart() {
-        var attachedDocumentTypes = attachedDocuments.stream()
-                .map(AttachedDocument::getType)
-                .collect(Collectors.toSet());
-
-        if (!attachedDocumentTypes.containsAll(REQUIRED_DOCUMENT_TYPES)) {
-            throw new ApplicationForALoanException("send-request-for-loan-start.error.not-all-required-documents-provided");
-        }
+        check(requiredDocuments.isAllRequiredDocumentsProvided(),
+                "send-request-for-loan-start.error.not-all-required-documents-provided");
 
         return RequestForLoanStartSent.builder()
+                .modifiedBy(bankAgentPolicy.getUsername())
                 .build();
+    }
+
+    private void check(boolean condition, String error) {
+        if (!condition) {
+            throw new ApplicationForALoanException(error);
+        }
     }
 }

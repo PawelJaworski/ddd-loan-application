@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerComposite;
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
-import pl.javorek.ddd.service.applicationforloan.domain.policy.ApplicationNumberPolicy;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -20,13 +19,10 @@ public class ApplicationForALoanCmdFacade {
     private final ApplicationForALoanStateRepository applicationForALoanStateRepository;
     private final DomainEventListenerComposite domainEventListenerComposite;
     private final DomainFactory domainFactory;
-    private final ApplicationNumberPolicy applicationNumberPolicy;
 
     public UUID submitLoanApplication(SubmitLoanApplicationCmd cmd) {
-        var event = Optional.ofNullable(cmd)
-                .map(domainFactory::newLoanRequestor)
-                .map(it -> ApplicationForALoan.requestForLoan(it, applicationNumberPolicy))
-                .orElseThrow();
+        var event = domainFactory.newApplicationForALoan()
+                .requestForLoan(domainFactory.newLoanRequestor(cmd));
         var state = applicationForALoanStateRepository.save(event);
 
         domainEventListenerComposite.onDomainEvent(event, state);

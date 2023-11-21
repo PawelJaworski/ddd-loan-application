@@ -1,12 +1,11 @@
 package pl.javorek.ddd.service.applicationforloan.domain.valueobject;
 
-import lombok.Getter;
+import lombok.Value;
 import pl.javorek.ddd.service.applicationforloan.domain.error.ApplicationForALoanException;
 
-
+@Value
 public class ApplicationNumber {
-    @Getter
-    private String asString;
+    String asString;
 
     public ApplicationNumber(int applicationNumber) {
         if (applicationNumber <= 0) {

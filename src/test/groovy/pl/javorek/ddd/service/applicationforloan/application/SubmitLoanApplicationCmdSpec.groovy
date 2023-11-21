@@ -2,12 +2,17 @@ package pl.javorek.ddd.service.applicationforloan.application
 
 import pl.javorek.ddd.service.applicationforloan.application.cmd.ApplicationForALoanCmdFacadeAbility
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepositoryAbility
+import pl.javorek.ddd.service.applicationforloan.domain.BankAgentPolicyAbility
 import spock.lang.Specification
 
 import static pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType.DRAFT
 
 class SubmitLoanApplicationCmdSpec extends Specification implements ApplicationForALoanCmdFacadeAbility,
-        ApplicationForALoanStateRepositoryAbility {
+        ApplicationForALoanStateRepositoryAbility, BankAgentPolicyAbility {
+
+    def setup() {
+        log_as_bank_agent()
+    }
 
     def "When application a loan submitted then loan request saved and got unique id."() {
         when:

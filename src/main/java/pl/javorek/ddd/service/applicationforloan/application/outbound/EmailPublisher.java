@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.application.integration;
+package pl.javorek.ddd.service.applicationforloan.application.outbound;
 
 import org.springframework.stereotype.Component;
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListener;

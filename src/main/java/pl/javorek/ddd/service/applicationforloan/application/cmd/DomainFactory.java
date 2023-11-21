@@ -1,13 +1,23 @@
 package pl.javorek.ddd.service.applicationforloan.application.cmd;
 
+import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanState;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
+import pl.javorek.ddd.service.applicationforloan.domain.policy.ApplicationNumberPolicy;
+import pl.javorek.ddd.service.applicationforloan.domain.policy.BankAgentPolicy;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocument;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
+import pl.javorek.ddd.service.applicationforloan.domain.valueobject.RequiredDocuments;
 
 @Component
+@Builder
+@RequiredArgsConstructor
 class DomainFactory {
+    private final BankAgentPolicy bankAgentPolicy;
+    private final ApplicationNumberPolicy applicationNumberPolicy;
+
     LoanRequestor newLoanRequestor(SubmitLoanApplicationCmd cmd) {
         return LoanRequestor.builder()
                 .name(cmd.name())
@@ -21,7 +31,13 @@ class DomainFactory {
                 .build();
     }
 
+    ApplicationForALoan newApplicationForALoan() {
+        var requiredDocuments = new RequiredDocuments();
+        return new ApplicationForALoan(applicationNumberPolicy, bankAgentPolicy, requiredDocuments);
+    }
+
     ApplicationForALoan newApplicationForALoan(ApplicationForALoanState state) {
-        return new ApplicationForALoan(state.getAttachedDocuments());
+        var requiredDocuments = new RequiredDocuments(state.getAttachedDocuments());
+        return new ApplicationForALoan(applicationNumberPolicy, bankAgentPolicy, requiredDocuments);
     }
 }

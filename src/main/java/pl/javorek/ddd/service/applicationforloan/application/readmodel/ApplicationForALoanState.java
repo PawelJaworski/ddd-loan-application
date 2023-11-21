@@ -5,6 +5,7 @@ import lombok.*;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocument;
+import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,9 @@ public class ApplicationForALoanState {
 
     @Embedded
     private ApplicationNumber applicationNumber;
+
+    @Embedded
+    private LoanRequestor loanRequestor;
 
     @ElementCollection
     @OrderColumn

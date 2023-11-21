@@ -14,6 +14,7 @@ public interface ApplicationForALoanStateRepository {
         var state = new ApplicationForALoanState(UUID.randomUUID());
         state.setApplicationNumber(event.applicationNumber());
         state.setApplicationStatus(ApplicationStatusType.DRAFT);
+        state.setLoanRequestor(event.loanRequestor());
 
         return save(state);
     }

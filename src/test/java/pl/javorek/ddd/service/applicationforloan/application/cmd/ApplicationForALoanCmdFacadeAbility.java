@@ -3,7 +3,6 @@ package pl.javorek.ddd.service.applicationforloan.application.cmd;
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerCompositeAbility;
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepositoryAbility;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocumentType;
-import pl.javorek.ddd.service.applicationforloan.infrastructure.ApplicationNumberPolicyAbility;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -13,7 +12,6 @@ public interface ApplicationForALoanCmdFacadeAbility {
             .applicationForALoanStateRepository(ApplicationForALoanStateRepositoryAbility.INSTANCE)
             .domainEventListenerComposite(DomainEventListenerCompositeAbility.INSTANCE)
             .domainFactory(DomainFactoryAbility.INSTANCE)
-            .applicationNumberPolicy(ApplicationNumberPolicyAbility.INSTANCE)
             .build();
 
     default UUID loan_application_submitted() {
