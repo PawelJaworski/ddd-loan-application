@@ -3,6 +3,7 @@ package pl.javorek.ddd.service.applicationforloan.application.readmodel;
 import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent;
 import pl.javorek.ddd.service.applicationforloan.domain.event.DomainEvent.RequestForLoanStartSent;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType;
+import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocument;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -15,6 +16,12 @@ public interface ApplicationForALoanStateRepository {
         state.setApplicationStatus(ApplicationStatusType.DRAFT);
 
         return save(state);
+    }
+
+    default ApplicationForALoanState save(ApplicationForALoanState state, AttachedDocument attachedDocument) {
+        state.addDocument(attachedDocument);
+
+        return state;
     }
 
     default ApplicationForALoanState save(ApplicationForALoanState state, DomainEvent event) {

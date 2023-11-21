@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerComposite;
 import pl.javorek.ddd.service.applicationforloan.application.readmodel.ApplicationForALoanStateRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
-import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -18,16 +18,13 @@ import java.util.UUID;
 public class ApplicationForALoanCmdFacade {
     private final ApplicationForALoanStateRepository applicationForALoanStateRepository;
     private final DomainEventListenerComposite domainEventListenerComposite;
-    private final AttachedDocumentMapper attachedDocumentMapper;
-    private final ApplicationForALoanMapper applicationForALoanMapper;
+    private final DomainFactory domainFactory;
 
     public UUID submitLoanApplication(SubmitLoanApplicationCmd cmd) {
-        var loanRequestor = LoanRequestor.builder()
-                .name(cmd.name())
-                .lastName(cmd.lastName())
-                .build();
-        var event = ApplicationForALoan.requestForLoan(loanRequestor);
-
+        var event = Optional.ofNullable(cmd)
+                .map(domainFactory::newLoanRequestor)
+                .map(ApplicationForALoan::requestForLoan)
+                .orElseThrow();
         var state = applicationForALoanStateRepository.save(event);
 
         domainEventListenerComposite.onDomainEvent(event, state);
@@ -36,18 +33,18 @@ public class ApplicationForALoanCmdFacade {
     }
 
     public void provideRequiredDocuments(ProvideRequiredDocumentCmd cmd) {
-        var state = applicationForALoanStateRepository.findOneById(cmd.id())
-                .orElseThrow();
-
-        state.addDocument(attachedDocumentMapper.map(cmd));
+        applicationForALoanStateRepository
+                .findOneById(cmd.id())
+                .ifPresent(it -> applicationForALoanStateRepository.save(it, domainFactory.newAttachedDocument(cmd)));
     }
 
     public void sendRequestForLoanStart(SendRequestForLoanStartCmd cmd) {
         var state = applicationForALoanStateRepository.findOneById(cmd.id())
                 .orElseThrow();
 
-        var applicationForALoan = applicationForALoanMapper.map(state);
-        var event = applicationForALoan.sendRequestForLoanStart();
+        var event = Optional.ofNullable(domainFactory.newApplicationForALoan(state))
+                .map(ApplicationForALoan::sendRequestForLoanStart)
+                .orElseThrow();
         applicationForALoanStateRepository.save(state, event);
     }
 }

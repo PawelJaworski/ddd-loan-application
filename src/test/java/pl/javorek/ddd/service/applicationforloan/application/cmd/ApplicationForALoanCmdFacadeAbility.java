@@ -11,8 +11,7 @@ public interface ApplicationForALoanCmdFacadeAbility {
     ApplicationForALoanCmdFacade INSTANCE = ApplicationForALoanCmdFacade.builder()
             .applicationForALoanStateRepository(ApplicationForALoanStateRepositoryAbility.INSTANCE)
             .domainEventListenerComposite(DomainEventListenerCompositeAbility.INSTANCE)
-            .attachedDocumentMapper(AttachedDocumentMapperAbility.INSTANCE)
-            .applicationForALoanMapper(ApplicationForALoanMapperAbility.INSTANCE)
+            .domainFactory(DomainFactoryAbility.INSTANCE)
             .build();
 
     default UUID loan_application_submitted() {
