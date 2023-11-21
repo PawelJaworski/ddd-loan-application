@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.application.command;
+package pl.javorek.ddd.service.applicationforloan.application.command.dto;
 
 import lombok.Builder;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocumentType;

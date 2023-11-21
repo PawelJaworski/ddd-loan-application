@@ -1,6 +1,8 @@
 package pl.javorek.ddd.service.applicationforloan.application.command;
 
-import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerCompositeAbility;
+import pl.javorek.ddd.service.applicationforloan.application.command.dto.ProvideRequiredDocumentCmd;
+import pl.javorek.ddd.service.applicationforloan.application.command.dto.SendRequestForLoanStartCmd;
+import pl.javorek.ddd.service.applicationforloan.application.command.dto.SubmitLoanApplicationCmd;
 import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntityRepositoryAbility;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocumentType;
 

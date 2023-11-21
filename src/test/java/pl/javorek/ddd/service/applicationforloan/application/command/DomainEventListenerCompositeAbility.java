@@ -1,5 +1,7 @@
-package pl.javorek.ddd.service.applicationforloan.application.eventlistener;
+package pl.javorek.ddd.service.applicationforloan.application.command;
 
+import pl.javorek.ddd.service.applicationforloan.application.command.DomainEventListenerComposite;
+import pl.javorek.ddd.service.applicationforloan.application.eventlistener.ExternalEventPublisherAbility;
 import pl.javorek.ddd.service.applicationforloan.application.outbound.EmailPublisherAbility;
 
 public interface DomainEventListenerCompositeAbility {

@@ -4,7 +4,9 @@ import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.javorek.ddd.service.applicationforloan.application.eventlistener.DomainEventListenerComposite;
+import pl.javorek.ddd.service.applicationforloan.application.command.dto.ProvideRequiredDocumentCmd;
+import pl.javorek.ddd.service.applicationforloan.application.command.dto.SendRequestForLoanStartCmd;
+import pl.javorek.ddd.service.applicationforloan.application.command.dto.SubmitLoanApplicationCmd;
 import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntityRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
 
