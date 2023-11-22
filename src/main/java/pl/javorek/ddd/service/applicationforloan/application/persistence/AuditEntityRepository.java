@@ -5,5 +5,5 @@ import java.util.UUID;
 
 public interface AuditEntityRepository {
     AuditEntity save(AuditEntity entity);
-    Optional<AuditEntity> findOneById(UUID id);
+    Optional<AuditEntity> findById(UUID id);
 }

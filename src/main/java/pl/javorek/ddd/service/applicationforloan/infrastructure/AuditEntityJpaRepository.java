@@ -10,8 +10,5 @@ import java.util.UUID;
 public interface AuditEntityJpaRepository extends AuditEntityRepository, JpaRepository<AuditEntity, UUID> {
 
     @Override
-    AuditEntity save(AuditEntity entity);
-
-    @Override
-    Optional<AuditEntity> findOneById(UUID id);
+    Optional<AuditEntity> findById(UUID id);
 }

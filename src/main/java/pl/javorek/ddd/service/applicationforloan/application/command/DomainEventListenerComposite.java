@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.javorek.ddd.service.applicationforloan.application.outbound.EmailPublisher;
 import pl.javorek.ddd.service.applicationforloan.application.outbound.ExternalEventPublisher;
 import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntity;
+import pl.javorek.ddd.service.applicationforloan.application.query.AuditProjection;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
 
 @Service
