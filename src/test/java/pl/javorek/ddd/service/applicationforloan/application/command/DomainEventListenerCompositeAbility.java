@@ -8,6 +8,7 @@ public interface DomainEventListenerCompositeAbility {
     DomainEventListenerComposite INSTANCE = DomainEventListenerComposite.builder()
             .emailPublisher(EmailPublisherAbility.INSTANCE)
             .eventPublisher(ExternalEventPublisherAbility.INSTANCE)
+            .auditProjection(AuditProjectionAbility.INSTANCE)
             .build();
 
     default DomainEventListenerComposite getDomainEventListenerComposite() {
