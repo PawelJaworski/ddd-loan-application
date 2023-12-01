@@ -5,6 +5,7 @@ import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationN
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public sealed interface DomainEvent {
 
@@ -25,5 +26,7 @@ public sealed interface DomainEvent {
     }
 
     @Builder
-    record LoanStarted() implements DomainEvent {}
+    record CommunicationAboutStartedLoanSent(LocalDateTime modificationTime,
+                                             List<String> communicationType) implements DomainEvent {
+    }
 }

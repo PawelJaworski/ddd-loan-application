@@ -1,11 +1,11 @@
 package pl.javorek.ddd.service.applicationforloan.application.eventlistener;
 
-import pl.javorek.ddd.service.applicationforloan.application.outbound.ExternalEventPublisher;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.kafka.ExternalEventKafkaPublisher;
 
 public interface ExternalEventPublisherAbility {
-    ExternalEventPublisher INSTANCE = ExternalEventPublisher.builder().build();
+    ExternalEventKafkaPublisher INSTANCE = ExternalEventKafkaPublisher.builder().build();
 
-    default ExternalEventPublisher getExternalEventPublisher() {
+    default ExternalEventKafkaPublisher getExternalEventPublisher() {
         return INSTANCE;
     }
 }
