@@ -2,13 +2,12 @@
 autonumber
 actor Client as client
 actor       "Bank agent" as bankAgent
-boundary    "Bank" as bankAnalyst
+boundary    "Bank" as bank
 client -> bankAgent : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Submit loan application]]
 bankAgent --> client : Loan application submitted
 client -> bankAgent : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Provide required documents]]
-bankAgent -> bankAnalyst : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Send request for loan start]]
-bankAnalyst -> bankAnalyst : Accept loan request
-bankAnalyst --> bankAgent : Loan started
-bankAgent -> bankAgent : Send communication about started loan
+bankAgent -> bank : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Send request for loan start]]
+bank -> bank : Accept loan request
+bank --> bankAgent : Loan started
 bankAgent --> client : Communication about started loan sent
 @enduml
