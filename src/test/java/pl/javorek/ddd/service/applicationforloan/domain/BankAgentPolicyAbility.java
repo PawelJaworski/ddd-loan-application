@@ -3,9 +3,7 @@ package pl.javorek.ddd.service.applicationforloan.domain;
 import org.springframework.security.authentication.TestingAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import pl.javorek.ddd.service.applicationforloan.domain.policy.BankAgentPolicy;
-import pl.javorek.ddd.service.applicationforloan.infrastructure.BankAgentSpringSecurityPolicy;
-
-import java.security.Security;
+import pl.javorek.ddd.service.applicationforloan.application.config.BankAgentSpringSecurityPolicy;
 
 public interface BankAgentPolicyAbility {
     BankAgentSpringSecurityPolicy INSTANCE = new BankAgentSpringSecurityPolicy();

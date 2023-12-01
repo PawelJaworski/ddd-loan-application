@@ -5,7 +5,7 @@ import pl.javorek.ddd.service.applicationforloan.application.command.dto.SendReq
 import pl.javorek.ddd.service.applicationforloan.application.command.dto.SubmitLoanApplicationCmd;
 import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntityRepositoryAbility;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocumentType;
-import pl.javorek.ddd.service.applicationforloan.infrastructure.DomainEventListenerCompositeAbility;
+import pl.javorek.ddd.service.applicationforloan.infrastructure.config.DomainEventListenerCompositeAbility;
 
 import java.math.BigDecimal;
 import java.util.UUID;

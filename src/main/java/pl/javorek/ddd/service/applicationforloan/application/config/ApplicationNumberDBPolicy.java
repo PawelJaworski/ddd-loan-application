@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.infrastructure;
+package pl.javorek.ddd.service.applicationforloan.application.config;
 
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;

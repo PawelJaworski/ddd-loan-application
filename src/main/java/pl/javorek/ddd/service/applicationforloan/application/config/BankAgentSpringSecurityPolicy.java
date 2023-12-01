@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.infrastructure;
+package pl.javorek.ddd.service.applicationforloan.application.config;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

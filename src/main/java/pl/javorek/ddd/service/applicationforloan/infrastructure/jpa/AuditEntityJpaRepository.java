@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.infrastructure;
+package pl.javorek.ddd.service.applicationforloan.infrastructure.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import pl.javorek.ddd.service.applicationforloan.application.persistence.AuditEntity;
