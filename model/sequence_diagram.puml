@@ -7,7 +7,10 @@ client -> bankAgent : [[https://github.com/PawelJaworski/ddd-loan-application/bl
 bankAgent --> client : Loan application submitted
 client -> bankAgent : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Provide required documents]]
 bankAgent -> bank : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Send request for loan start]]
+activate bank
 bank -> bank : Accept loan request
 bank --> bankAgent : Loan started
+deactivate bank
+
 bankAgent --> client : Communication about started loan sent
 @enduml
