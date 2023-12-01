@@ -1,9 +1,13 @@
 @startuml
-Client -> "Bank agent" : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Submit loan application]]
-"Bank agent" --> "Client" : Loan application submitted
-Client -> "Bank agent" : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Provide required documents]]
-"Bank agent" -> "Bank analyst" : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Send request for loan start]]
-"Bank analyst" -> "Bank analyst" : Accept loan request
-"Bank analyst" --> "Bank agent" : Loan started
-"Bank agent" -> "Client" : Send communication about started loan
+autonumber
+actor Client as client
+actor       "Bank agent" as bankAgent
+boundary    "Bank" as bankAnalyst
+client -> bankAgent : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Submit loan application]]
+bankAnalyst --> client : Loan application submitted
+client -> bankAgent : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Provide required documents]]
+bankAgent -> bankAnalyst : [[https://github.com/PawelJaworski/ddd-loan-application/blob/main/src/main/java/pl/javorek/ddd/service/applicationforloan/application/command/ApplicationForALoanCmdFacade.java Send request for loan start]]
+bankAnalyst -> bankAnalyst : Accept loan request
+bankAnalyst --> bankAgent : Loan started
+bankAgent -> client : Send communication about started loan
 @enduml
