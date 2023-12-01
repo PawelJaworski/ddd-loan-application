@@ -2,10 +2,7 @@ package pl.javorek.ddd.service.applicationforloan.application.persistence;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
-import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType;
-import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocument;
-import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
+import pl.javorek.ddd.service.applicationforloan.domain.valueobject.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +28,8 @@ public class ApplicationForALoanEntity {
 
     @Enumerated(EnumType.STRING)
     private ApplicationStatusType applicationStatus;
+
+    private CommunicationAgreements communicationAgreements;
 
     public ApplicationForALoanEntity(UUID id) {
         this.id = id;

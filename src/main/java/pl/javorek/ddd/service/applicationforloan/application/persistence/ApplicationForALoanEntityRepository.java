@@ -4,6 +4,7 @@ import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent.RequestForLoanStartSent;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocument;
+import pl.javorek.ddd.service.applicationforloan.domain.valueobject.CommunicationAgreements;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -15,6 +16,7 @@ public interface ApplicationForALoanEntityRepository {
         state.setApplicationNumber(event.applicationNumber());
         state.setApplicationStatus(ApplicationStatusType.DRAFT);
         state.setLoanRequestor(event.loanRequestor());
+        state.setCommunicationAgreements(event.communicationAgreements());
 
         return save(state);
     }
@@ -42,6 +44,8 @@ public interface ApplicationForALoanEntityRepository {
 
     ApplicationForALoanEntity save(ApplicationForALoanEntity applicationForALoanEntity);
     Optional<ApplicationForALoanEntity> findOneById(UUID id);
+
+    Optional<ApplicationForALoanEntity> findOneByApplicationNumberAsString(String applicationNumber);
 
     Optional<String> findMaxApplicationNumberAsString();
 }

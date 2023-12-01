@@ -25,7 +25,7 @@ public class ApplicationForALoanCmdFacade {
 
     public UUID submitLoanApplication(SubmitLoanApplicationCmd cmd) {
         var event = domainFactory.newApplicationForALoan()
-                .requestForLoan(domainFactory.newLoanRequestor(cmd));
+                .requestForLoan(domainFactory.newLoanRequestor(cmd), domainFactory.newCommunicationAgreements(cmd));
         var state = applicationForALoanEntityRepository.save(event);
 
         domainEventListenerComposite.onDomainEvent(event, state);
@@ -50,6 +50,13 @@ public class ApplicationForALoanCmdFacade {
     }
 
     public void sendCommunicationAboutStartedLoan(SendCommunicationAboutStartedLoanCmd cmd) {
+        var state = applicationForALoanEntityRepository.findOneByApplicationNumberAsString(cmd.applicationNumber())
+                .orElseThrow();
 
+        var event = Optional.ofNullable(domainFactory.newApplicationForALoan(state))
+                .map(ApplicationForALoan::sendClientCommunicationForStartedLoan)
+                .orElseThrow();
+
+        domainEventListenerComposite.onDomainEvent(event, state);
     }
 }

@@ -2,13 +2,13 @@ package pl.javorek.ddd.service.applicationforloan.infrastructure.config;
 
 import pl.javorek.ddd.service.applicationforloan.application.command.AuditProjectionAbility;
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.ExternalEventPublisherAbility;
-import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.ClientCommunicationSenderAbility;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.SmsSenderAbility;
 
 public interface DomainEventListenerCompositeAbility {
     DomainEventListenerCompositeImpl INSTANCE = DomainEventListenerCompositeImpl.builder()
-            .externalEventKafkaPublisher(ExternalEventPublisherAbility.INSTANCE)
+            .externalEventPublisher(ExternalEventPublisherAbility.INSTANCE)
             .auditProjection(AuditProjectionAbility.INSTANCE)
-            .smsSender(ClientCommunicationSenderAbility.INSTANCE)
+            .smsSender(SmsSenderAbility.INSTANCE)
             .build();
 
     default DomainEventListenerCompositeImpl getDomainEventListenerComposite() {

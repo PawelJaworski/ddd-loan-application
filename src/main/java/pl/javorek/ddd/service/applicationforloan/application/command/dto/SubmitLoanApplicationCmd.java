@@ -5,5 +5,6 @@ import lombok.Builder;
 import java.math.BigDecimal;
 
 @Builder
-public record SubmitLoanApplicationCmd(String name, String lastName, BigDecimal loanAmount) {
+public record SubmitLoanApplicationCmd(String name, String lastName, BigDecimal loanAmount, boolean smsAgreement,
+                                       boolean emailAgreement) {
 }

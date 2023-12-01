@@ -1,6 +1,7 @@
 package pl.javorek.ddd.service.applicationforloan.application.command;
 
 import pl.javorek.ddd.service.applicationforloan.application.command.dto.ProvideRequiredDocumentCmd;
+import pl.javorek.ddd.service.applicationforloan.application.command.dto.SendCommunicationAboutStartedLoanCmd;
 import pl.javorek.ddd.service.applicationforloan.application.command.dto.SendRequestForLoanStartCmd;
 import pl.javorek.ddd.service.applicationforloan.application.command.dto.SubmitLoanApplicationCmd;
 import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntityRepositoryAbility;
@@ -9,6 +10,7 @@ import pl.javorek.ddd.service.applicationforloan.infrastructure.config.DomainEve
 
 import java.math.BigDecimal;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 public interface ApplicationForALoanCmdFacadeAbility {
     ApplicationForALoanCmdFacade INSTANCE = ApplicationForALoanCmdFacade.builder()
@@ -16,6 +18,16 @@ public interface ApplicationForALoanCmdFacadeAbility {
             .domainEventListenerComposite(DomainEventListenerCompositeAbility.INSTANCE)
             .domainFactory(DomainFactoryAbility.INSTANCE)
             .build();
+
+    default UUID loan_application_submitted(Consumer<SubmitLoanApplicationCmd.SubmitLoanApplicationCmdBuilder> builder) {
+        var cmd = SubmitLoanApplicationCmd.builder()
+                .name("Jan")
+                .lastName("Kowalski")
+                .loanAmount(new BigDecimal("10000.00"));
+        builder.accept(cmd);
+
+        return getApplicationForALoanCmdFacade().submitLoanApplication(cmd.build());
+    }
 
     default UUID loan_application_submitted() {
         var cmd = SubmitLoanApplicationCmd.builder()
@@ -30,6 +42,11 @@ public interface ApplicationForALoanCmdFacadeAbility {
         document_provided(id, AttachedDocumentType.GDPR);
         document_provided(id, AttachedDocumentType.EMPLOYMENT_CERTIFICATE);
         document_provided(id, AttachedDocumentType.BANK_ACCOUNT_STATEMENT);
+    }
+
+    default void communication_about_started_loan_sent(String applicationNumber) {
+        var cmd = new SendCommunicationAboutStartedLoanCmd(applicationNumber);
+        getApplicationForALoanCmdFacade().sendCommunicationAboutStartedLoan(cmd);
     }
 
     private void document_provided(UUID id, AttachedDocumentType type) {

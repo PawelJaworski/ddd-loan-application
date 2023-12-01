@@ -2,6 +2,7 @@ package pl.javorek.ddd.service.applicationforloan.domain;
 
 import lombok.Builder;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
+import pl.javorek.ddd.service.applicationforloan.domain.valueobject.CommunicationAgreements;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
 
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ public sealed interface DomainEvent {
     @Builder
     record LoanApplicationSubmitted(String modifiedBy, LocalDateTime modificationTime,
                                     ApplicationNumber applicationNumber,
-                                    LoanRequestor loanRequestor) implements DomainEvent {
+                                    LoanRequestor loanRequestor, CommunicationAgreements communicationAgreements) implements DomainEvent {
         public LoanApplicationSubmitted {
             if (modificationTime == null) modificationTime = LocalDateTime.now();
         }
@@ -26,7 +27,6 @@ public sealed interface DomainEvent {
     }
 
     @Builder
-    record CommunicationAboutStartedLoanSent(LocalDateTime modificationTime,
-                                             List<String> communicationType) implements DomainEvent {
+    record CommunicationAboutStartedLoanSent(LocalDateTime modificationTime, boolean sms, boolean email) implements DomainEvent {
     }
 }

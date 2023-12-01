@@ -1,8 +1,10 @@
 package pl.javorek.ddd.service.applicationforloan.application.persistence;
 
 import org.junit.jupiter.api.Assertions;
+import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface ApplicationForALoanEntityRepositoryAbility {
@@ -37,6 +39,12 @@ public interface ApplicationForALoanEntityRepositoryAbility {
                 .getApplicationStatus();
 
         Assertions.assertEquals(ApplicationStatusType.WAITING_FOR_APPROVAL, actual);
+    }
+
+    default Optional<String> with_loan_application_number(UUID id) {
+        return getApplicationForALoanEntityRepository().findOneById(id)
+                .map(ApplicationForALoanEntity::getApplicationNumber)
+                .map(ApplicationNumber::getAsString);
     }
 
     default ApplicationForALoanEntityRepository getApplicationForALoanEntityRepository() {

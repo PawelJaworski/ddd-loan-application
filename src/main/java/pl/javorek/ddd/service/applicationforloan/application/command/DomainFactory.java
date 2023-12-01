@@ -10,6 +10,7 @@ import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
 import pl.javorek.ddd.service.applicationforloan.domain.policy.ApplicationNumberPolicy;
 import pl.javorek.ddd.service.applicationforloan.domain.policy.BankAgentPolicy;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocument;
+import pl.javorek.ddd.service.applicationforloan.domain.valueobject.CommunicationAgreements;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.LoanRequestor;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.RequiredDocuments;
 
@@ -21,9 +22,21 @@ class DomainFactory {
     private final ApplicationNumberPolicy applicationNumberPolicy;
 
     LoanRequestor newLoanRequestor(SubmitLoanApplicationCmd cmd) {
+        var communicationAgreements = CommunicationAgreements.builder()
+                .sms(cmd.smsAgreement())
+                .email(cmd.emailAgreement())
+                .build();
         return LoanRequestor.builder()
                 .name(cmd.name())
                 .lastName(cmd.lastName())
+                .communicationAgreements(communicationAgreements)
+                .build();
+    }
+
+    CommunicationAgreements newCommunicationAgreements(SubmitLoanApplicationCmd cmd) {
+        return CommunicationAgreements.builder()
+                .sms(cmd.smsAgreement())
+                .email(cmd.emailAgreement())
                 .build();
     }
 
@@ -35,11 +48,19 @@ class DomainFactory {
 
     ApplicationForALoan newApplicationForALoan() {
         var requiredDocuments = new RequiredDocuments();
-        return new ApplicationForALoan(applicationNumberPolicy, bankAgentPolicy, requiredDocuments);
+        var communicationAgreements = CommunicationAgreements.builder()
+                .sms(false)
+                .email(false)
+                .build();
+        return new ApplicationForALoan(applicationNumberPolicy, bankAgentPolicy, requiredDocuments, communicationAgreements);
     }
 
     ApplicationForALoan newApplicationForALoan(ApplicationForALoanEntity state) {
         var requiredDocuments = new RequiredDocuments(state.getAttachedDocuments());
-        return new ApplicationForALoan(applicationNumberPolicy, bankAgentPolicy, requiredDocuments);
+        var communicationAgreements = CommunicationAgreements.builder()
+                .sms(state.getCommunicationAgreements().sms())
+                .email(state.getCommunicationAgreements().email())
+                .build();
+        return new ApplicationForALoan(applicationNumberPolicy, bankAgentPolicy, requiredDocuments, communicationAgreements);
     }
 }

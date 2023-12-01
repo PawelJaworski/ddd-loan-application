@@ -22,6 +22,13 @@ public class ApplicationForALoanEntityInMemoryRepository implements ApplicationF
     }
 
     @Override
+    public Optional<ApplicationForALoanEntity> findOneByApplicationNumberAsString(String applicationNumber) {
+        return data.values().stream()
+                .filter(it -> it.getApplicationNumber().getAsString().equals(applicationNumber))
+                .findFirst();
+    }
+
+    @Override
     public Optional<String> findMaxApplicationNumberAsString() {
         return data.values().stream()
                 .map(ApplicationForALoanEntity::getApplicationNumber)

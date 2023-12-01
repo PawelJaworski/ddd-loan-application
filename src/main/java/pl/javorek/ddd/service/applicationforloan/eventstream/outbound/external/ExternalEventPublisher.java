@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.kafka;
+package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.external;
 
 import lombok.Builder;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
 
 @Component
 @Builder
-public class ExternalEventKafkaPublisher implements DomainEventListener {
+public class ExternalEventPublisher implements DomainEventListener {
 
     @Override
     public void onDomainEvent(DomainEvent event, ApplicationForALoanEntity state) {
