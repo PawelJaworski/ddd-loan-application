@@ -34,9 +34,10 @@ public class ApplicationForALoanCmdFacade {
     }
 
     public void provideRequiredDocuments(ProvideRequiredDocumentCmd cmd) {
+        var attachedDocument = domainFactory.newAttachedDocument(cmd);
         applicationForALoanEntityRepository
                 .findOneById(cmd.id())
-                .ifPresent(it -> applicationForALoanEntityRepository.save(it, domainFactory.newAttachedDocument(cmd)));
+                .ifPresent(event -> applicationForALoanEntityRepository.save(event, attachedDocument));
     }
 
     public void sendRequestForLoanStart(SendRequestForLoanStartCmd cmd) {

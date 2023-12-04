@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface SmsOutboxJpaRepository extends JpaRepository<SmsOutbox, UUID> {
+public interface SmsOutboxJpaRepository extends SmsOutboxRepository, JpaRepository<SmsOutbox, UUID> {
 }

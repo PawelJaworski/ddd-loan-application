@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms;
+package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent;
 
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
@@ -13,11 +13,11 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class SmsOutbox {
+public class KafkaOutbox {
     @Id
     @Getter
     private UUID id;
 
-    @Convert(converter = SmsMessageJsonConverter.class)
-    private SmsMessage message;
+    @Convert(converter = KafkaMessageJsonConverter.class)
+    private KafkaMessage message;
 }

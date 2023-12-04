@@ -22,14 +22,9 @@ class DomainFactory {
     private final ApplicationNumberPolicy applicationNumberPolicy;
 
     LoanRequestor newLoanRequestor(SubmitLoanApplicationCmd cmd) {
-        var communicationAgreements = CommunicationAgreements.builder()
-                .sms(cmd.smsAgreement())
-                .email(cmd.emailAgreement())
-                .build();
         return LoanRequestor.builder()
                 .name(cmd.name())
                 .lastName(cmd.lastName())
-                .communicationAgreements(communicationAgreements)
                 .build();
     }
 

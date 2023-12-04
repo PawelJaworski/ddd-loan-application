@@ -8,7 +8,7 @@ import pl.javorek.ddd.service.applicationforloan.application.persistence.Applica
 import pl.javorek.ddd.service.applicationforloan.application.query.AuditProjection;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
 import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.SmsSender;
-import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.external.ExternalEventPublisher;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.ExternalEventPublisher;
 
 @Service
 @Builder
