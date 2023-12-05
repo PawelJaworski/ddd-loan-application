@@ -15,13 +15,13 @@ import java.time.LocalDateTime;
 @Builder
 @RequiredArgsConstructor
 public class ExternalEventPublisher implements DomainEventListener {
-    private final ObjectMapper objectMapper;
+    private final ApplicationForALoanDocumentMapper applicationForALoanDocumentMapper;
     private final KafkaOutboxRepository kafkaOutboxRepository;
 
     @Override
     @SneakyThrows
     public void onDomainEvent(DomainEvent event, ApplicationForALoanEntity state) {
-        var message = objectMapper.writeValueAsString(state);
+        var message = applicationForALoanDocumentMapper.map(state);
         var outbox = new KafkaOutbox(state.getId(), new KafkaMessage(LocalDateTime.now(), message));
 
         kafkaOutboxRepository.save(outbox);

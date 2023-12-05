@@ -1,5 +1,6 @@
 package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -18,6 +19,7 @@ public class KafkaOutbox {
     @Getter
     private UUID id;
 
+    @Column(length = 4064)
     @Convert(converter = KafkaMessageJsonConverter.class)
     private KafkaMessage message;
 }

@@ -1,6 +1,6 @@
 package pl.javorek.ddd.service.applicationforloan.application.eventlistener;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.ApplicationForALoanDocumentMapperImpl;
 import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.ExternalEventPublisher;
 import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.kafka.KafkaOutboxRepositoryAbility;
 
@@ -8,7 +8,7 @@ import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.kafka.Kafk
 public interface ExternalEventPublisherAbility {
     ExternalEventPublisher INSTANCE = ExternalEventPublisher.builder()
             .kafkaOutboxRepository(KafkaOutboxRepositoryAbility.INSTANCE)
-            .objectMapper(new ObjectMapper())
+            .applicationForALoanDocumentMapper(new ApplicationForALoanDocumentMapperImpl())
             .build();
 
     default ExternalEventPublisher getExternalEventPublisher() {
