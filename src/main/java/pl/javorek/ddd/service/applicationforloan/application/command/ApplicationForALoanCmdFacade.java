@@ -9,6 +9,8 @@ import pl.javorek.ddd.service.applicationforloan.application.command.dto.SendCom
 import pl.javorek.ddd.service.applicationforloan.application.command.dto.SendRequestForLoanStartCmd;
 import pl.javorek.ddd.service.applicationforloan.application.command.dto.SubmitLoanApplicationCmd;
 import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntityRepository;
+import pl.javorek.ddd.service.applicationforloan.application.persistence.EventStoreEntity;
+import pl.javorek.ddd.service.applicationforloan.application.persistence.EventStoreEntityRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
 
 import java.util.Optional;
@@ -22,6 +24,7 @@ public class ApplicationForALoanCmdFacade {
     private final ApplicationForALoanEntityRepository applicationForALoanEntityRepository;
     private final DomainEventListenerComposite domainEventListenerComposite;
     private final DomainFactory domainFactory;
+    private final EventStoreEntityRepository eventStoreEntityRepository;
 
     public UUID submitLoanApplication(SubmitLoanApplicationCmd cmd) {
         var event = domainFactory.newApplicationForALoan()
@@ -29,6 +32,8 @@ public class ApplicationForALoanCmdFacade {
         var state = applicationForALoanEntityRepository.save(event);
 
         domainEventListenerComposite.onDomainEvent(event, state);
+        var eventStore = eventStoreEntityRepository.save(new EventStoreEntity(state.getId()));
+        eventStore.addEvent(event);
 
         return state.getId();
     }
@@ -47,6 +52,8 @@ public class ApplicationForALoanCmdFacade {
         var event = Optional.ofNullable(domainFactory.newApplicationForALoan(state))
                 .map(ApplicationForALoan::sendRequestForLoanStart)
                 .orElseThrow();
+        eventStoreEntityRepository.findById(cmd.id())
+                .ifPresent(eventStoreEntityRepository::save);
         applicationForALoanEntityRepository.save(state, event);
     }
 
