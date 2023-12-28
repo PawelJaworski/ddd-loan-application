@@ -1,5 +1,8 @@
 package pl.javorek.ddd.service.applicationforloan.application.persistence;
 
+import pl.javorek.ddd.service.applicationforloan.application.command.persistence.EventStoreEntity;
+import pl.javorek.ddd.service.applicationforloan.application.command.persistence.EventStoreEntityRepository;
+
 import java.util.*;
 
 public class EventStoreEntityInMemoryRepository implements EventStoreEntityRepository {

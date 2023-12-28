@@ -1,11 +1,10 @@
-package pl.javorek.ddd.service.applicationforloan.application.persistence;
+package pl.javorek.ddd.service.applicationforloan.application.command.persistence;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
 

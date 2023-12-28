@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.application.persistence;
+package pl.javorek.ddd.service.applicationforloan.application.command.persistence;
 
 import java.util.Optional;
 import java.util.UUID;
