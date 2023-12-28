@@ -1,19 +1,19 @@
 package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.kafka;
 
-import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.KafkaOutbox;
-import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.KafkaOutboxRepository;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.ApplicationForALoanDocumentOutbox;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.ApplicationForALoanDocumentOutboxRepository;
 
 import java.util.Optional;
 import java.util.UUID;
 
 public interface KafkaOutboxRepositoryAbility {
-    KafkaOutboxRepository INSTANCE = new KafkaOutboxInMemoryRepository();
+    ApplicationForALoanDocumentOutboxRepository INSTANCE = new ApplicationForALoanDocumentOutboxInMemoryRepository();
 
-    default KafkaOutboxRepository getKafkaOutboxRepository() {
+    default ApplicationForALoanDocumentOutboxRepository getKafkaOutboxRepository() {
         return INSTANCE;
     }
 
-    default Optional<KafkaOutbox> with_kafka_sent(UUID id) {
+    default Optional<ApplicationForALoanDocumentOutbox> with_kafka_sent(UUID id) {
       return getKafkaOutboxRepository().findById(id);
     }
 

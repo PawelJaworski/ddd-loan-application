@@ -15,7 +15,7 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class KafkaOutbox {
+public class ApplicationForALoanDocumentOutbox {
     @Id
     @Getter
     private UUID id;

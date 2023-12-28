@@ -7,7 +7,7 @@ import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.kafka.Kafk
 
 public interface ExternalEventPublisherAbility {
     ExternalEventPublisher INSTANCE = ExternalEventPublisher.builder()
-            .kafkaOutboxRepository(KafkaOutboxRepositoryAbility.INSTANCE)
+            .applicationForALoanDocumentOutboxRepository(KafkaOutboxRepositoryAbility.INSTANCE)
             .applicationForALoanDocumentMapper(new ApplicationForALoanDocumentMapperImpl())
             .build();
 
