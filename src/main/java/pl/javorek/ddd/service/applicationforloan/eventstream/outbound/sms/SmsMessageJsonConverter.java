@@ -2,8 +2,7 @@ package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.Converter;
-import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.SmsMessage;
-import pl.javorek.ddd.service.applicationforloan.eventstream.outbox.AbstractMessageJsonConverter;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.util.AbstractMessageJsonConverter;
 
 @Converter
 public class SmsMessageJsonConverter extends AbstractMessageJsonConverter<SmsMessage> {
