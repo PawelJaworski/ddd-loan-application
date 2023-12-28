@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms;
+package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.contract;
 
 import java.time.LocalDateTime;
 

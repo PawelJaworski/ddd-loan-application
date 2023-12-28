@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent;
+package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.persistence;
 
 import java.util.Optional;
 import java.util.UUID;

@@ -1,5 +1,8 @@
 package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms;
 
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.persistence.SmsOutbox;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.persistence.SmsOutboxRepository;
+
 import java.util.*;
 
 public class SmsOutboxInMemoryRepository implements SmsOutboxRepository {

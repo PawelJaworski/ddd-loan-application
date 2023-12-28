@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent;
+package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.persistence;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.contract.ApplicationForALoanDocument;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.persistence.ApplicationForALoanDocumentJsonConverter;
 
 import java.util.UUID;
 

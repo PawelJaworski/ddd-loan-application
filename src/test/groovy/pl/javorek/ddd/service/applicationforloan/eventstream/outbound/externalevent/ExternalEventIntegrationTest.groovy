@@ -5,6 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import pl.javorek.ddd.service.applicationforloan.application.command.ApplicationForALoanCmdFacade
 import pl.javorek.ddd.service.applicationforloan.application.command.ApplicationForALoanCmdFacadeAbility
 import pl.javorek.ddd.service.applicationforloan.application.command.BankAgentPolicyAbility
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.persistence.ApplicationForALoanDocumentOutboxRepository
 import spock.lang.Specification
 
 @SpringBootTest

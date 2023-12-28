@@ -1,7 +1,7 @@
 package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.kafka;
 
-import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.ApplicationForALoanDocumentOutbox;
-import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.ApplicationForALoanDocumentOutboxRepository;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.persistence.ApplicationForALoanDocumentOutbox;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.persistence.ApplicationForALoanDocumentOutboxRepository;
 
 import java.util.Optional;
 import java.util.UUID;

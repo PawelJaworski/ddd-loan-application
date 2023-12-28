@@ -1,6 +1,7 @@
 package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms;
 
-import org.junit.jupiter.api.Assertions;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.persistence.SmsOutbox;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.persistence.SmsOutboxRepository;
 
 import java.util.Optional;
 import java.util.UUID;

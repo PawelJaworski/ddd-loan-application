@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import pl.javorek.ddd.service.applicationforloan.application.command.DomainEventListener;
 import pl.javorek.ddd.service.applicationforloan.application.command.persistence.ApplicationForALoanEntity;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.persistence.ApplicationForALoanDocumentOutbox;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.persistence.ApplicationForALoanDocumentOutboxRepository;
 
 @Component
 @Builder

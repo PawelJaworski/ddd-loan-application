@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms;
+package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

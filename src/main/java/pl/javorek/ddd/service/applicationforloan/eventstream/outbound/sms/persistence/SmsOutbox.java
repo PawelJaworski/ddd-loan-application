@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms;
+package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.persistence;
 
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.contract.SmsMessage;
 
 import java.util.UUID;
 

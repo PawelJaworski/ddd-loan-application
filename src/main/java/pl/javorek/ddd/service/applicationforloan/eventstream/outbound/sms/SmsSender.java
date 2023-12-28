@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 import pl.javorek.ddd.service.applicationforloan.application.command.DomainEventListener;
 import pl.javorek.ddd.service.applicationforloan.application.command.persistence.ApplicationForALoanEntity;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.contract.SmsMessage;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.persistence.SmsOutbox;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.persistence.SmsOutboxRepository;
 
 import java.time.LocalDateTime;
 
