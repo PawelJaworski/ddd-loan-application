@@ -1,10 +1,9 @@
-package pl.javorek.ddd.service.applicationforloan.application.persistence;
+package pl.javorek.ddd.service.applicationforloan.application.command.persistence;
 
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent.RequestForLoanStartSent;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocument;
-import pl.javorek.ddd.service.applicationforloan.domain.valueobject.CommunicationAgreements;
 
 import java.util.Optional;
 import java.util.UUID;

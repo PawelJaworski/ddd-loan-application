@@ -2,7 +2,7 @@ package pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externale
 
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntity;
+import pl.javorek.ddd.service.applicationforloan.application.command.persistence.ApplicationForALoanEntity;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
 import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.contract.ApplicationForALoanDocument;
 

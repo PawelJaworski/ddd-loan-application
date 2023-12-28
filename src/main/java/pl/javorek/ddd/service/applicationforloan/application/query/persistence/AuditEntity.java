@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.application.persistence;
+package pl.javorek.ddd.service.applicationforloan.application.query.persistence;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

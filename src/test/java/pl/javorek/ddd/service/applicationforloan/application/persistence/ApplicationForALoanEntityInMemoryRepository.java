@@ -1,5 +1,7 @@
 package pl.javorek.ddd.service.applicationforloan.application.persistence;
 
+import pl.javorek.ddd.service.applicationforloan.application.command.persistence.ApplicationForALoanEntity;
+import pl.javorek.ddd.service.applicationforloan.application.command.persistence.ApplicationForALoanEntityRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationNumber;
 
 import java.util.*;

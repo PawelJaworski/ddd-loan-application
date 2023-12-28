@@ -1,5 +1,8 @@
 package pl.javorek.ddd.service.applicationforloan.application.persistence;
 
+import pl.javorek.ddd.service.applicationforloan.application.query.persistence.AuditEntity;
+import pl.javorek.ddd.service.applicationforloan.application.query.persistence.AuditEntityRepository;
+
 import java.util.*;
 
 public class AuditEntityInMemoryRepository implements AuditEntityRepository {

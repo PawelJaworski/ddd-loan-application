@@ -8,7 +8,7 @@ import pl.javorek.ddd.service.applicationforloan.application.command.dto.Provide
 import pl.javorek.ddd.service.applicationforloan.application.command.dto.SendCommunicationAboutStartedLoanCmd;
 import pl.javorek.ddd.service.applicationforloan.application.command.dto.SendRequestForLoanStartCmd;
 import pl.javorek.ddd.service.applicationforloan.application.command.dto.SubmitLoanApplicationCmd;
-import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntityRepository;
+import pl.javorek.ddd.service.applicationforloan.application.command.persistence.ApplicationForALoanEntityRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
 
 import java.util.Optional;

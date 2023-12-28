@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.javorek.ddd.service.applicationforloan.application.command.DomainEventListenerComposite;
-import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntity;
+import pl.javorek.ddd.service.applicationforloan.application.command.persistence.ApplicationForALoanEntity;
 import pl.javorek.ddd.service.applicationforloan.application.query.AuditProjection;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
 import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.sms.SmsSender;

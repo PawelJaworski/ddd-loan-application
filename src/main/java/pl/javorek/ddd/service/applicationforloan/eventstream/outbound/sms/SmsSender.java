@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import pl.javorek.ddd.service.applicationforloan.application.command.DomainEventListener;
-import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntity;
+import pl.javorek.ddd.service.applicationforloan.application.command.persistence.ApplicationForALoanEntity;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
 
 import java.time.LocalDateTime;

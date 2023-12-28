@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.application.persistence;
+package pl.javorek.ddd.service.applicationforloan.application.command.persistence;
 
 import jakarta.persistence.*;
 import lombok.*;
