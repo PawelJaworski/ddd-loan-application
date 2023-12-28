@@ -3,6 +3,7 @@ package pl.javorek.ddd.service.applicationforloan.application.persistence;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent.CommunicationAboutStartedLoanSent;
@@ -11,6 +12,7 @@ import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent.RequestForLo
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class DomainEventJpaWrapper {
     private LoanApplicationSubmitted loanApplicationSubmitted;
     private RequestForLoanStartSent requestForLoanStartSent;

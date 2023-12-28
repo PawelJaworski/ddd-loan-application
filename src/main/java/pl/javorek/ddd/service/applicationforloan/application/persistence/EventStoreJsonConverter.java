@@ -2,17 +2,21 @@ package pl.javorek.ddd.service.applicationforloan.application.persistence;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.persistence.AttributeConverter;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
-@RequiredArgsConstructor
 @Slf4j
 public class EventStoreJsonConverter implements AttributeConverter<DomainEventJpaWrapper, String> {
 
   private final ObjectMapper objectMapper;
+
+  public EventStoreJsonConverter(Jackson2ObjectMapperBuilder objectMapperBuilder) {
+    objectMapperBuilder.modules(new JavaTimeModule());
+    this.objectMapper = objectMapperBuilder.build();
+  }
 
   @SneakyThrows
   @Override

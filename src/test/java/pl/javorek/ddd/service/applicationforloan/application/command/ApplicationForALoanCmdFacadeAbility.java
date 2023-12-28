@@ -5,7 +5,6 @@ import pl.javorek.ddd.service.applicationforloan.application.command.dto.SendCom
 import pl.javorek.ddd.service.applicationforloan.application.command.dto.SendRequestForLoanStartCmd;
 import pl.javorek.ddd.service.applicationforloan.application.command.dto.SubmitLoanApplicationCmd;
 import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntityRepositoryAbility;
-import pl.javorek.ddd.service.applicationforloan.application.persistence.EventStoreEntityRepositoryAbility;
 import pl.javorek.ddd.service.applicationforloan.domain.valueobject.AttachedDocumentType;
 import pl.javorek.ddd.service.applicationforloan.infrastructure.config.DomainEventListenerCompositeAbility;
 
@@ -18,7 +17,6 @@ public interface ApplicationForALoanCmdFacadeAbility {
             .applicationForALoanEntityRepository(ApplicationForALoanEntityRepositoryAbility.INSTANCE)
             .domainEventListenerComposite(DomainEventListenerCompositeAbility.INSTANCE)
             .domainFactory(DomainFactoryAbility.INSTANCE)
-            .eventStoreEntityRepository(EventStoreEntityRepositoryAbility.INSTANCE)
             .build();
 
     default UUID loan_application_submitted(Consumer<SubmitLoanApplicationCmd.SubmitLoanApplicationCmdBuilder> builder) {

@@ -12,29 +12,35 @@ import pl.javorek.ddd.service.applicationforloan.application.persistence.Applica
 import pl.javorek.ddd.service.applicationforloan.application.persistence.EventStoreEntity;
 import pl.javorek.ddd.service.applicationforloan.application.persistence.EventStoreEntityRepository;
 import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoan;
+import pl.javorek.ddd.service.applicationforloan.domain.ApplicationForALoanFunctional;
+import pl.javorek.ddd.service.applicationforloan.domain.policy.ApplicationNumberPolicy;
+import pl.javorek.ddd.service.applicationforloan.domain.policy.BankAgentPolicy;
 
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 @Service
 @Transactional
 @Builder
 @RequiredArgsConstructor
-public class ApplicationForALoanCmdFacade {
+public class ApplicationForALoanCmdFacadeEventImpl {
     private final ApplicationForALoanEntityRepository applicationForALoanEntityRepository;
     private final DomainEventListenerComposite domainEventListenerComposite;
     private final DomainFactory domainFactory;
     private final EventStoreEntityRepository eventStoreEntityRepository;
+    private final BankAgentPolicy bankAgentPolicy;
+    private final ApplicationNumberPolicy applicationNumberPolicy;
+    private final ApplicationForALoanFunctional applicationForALoanFunctional = new ApplicationForALoanFunctional();
 
     public UUID submitLoanApplication(SubmitLoanApplicationCmd cmd) {
         var event = domainFactory.newApplicationForALoan()
                 .requestForLoan(domainFactory.newLoanRequestor(cmd), domainFactory.newCommunicationAgreements(cmd));
+
         var state = applicationForALoanEntityRepository.save(event);
 
         domainEventListenerComposite.onDomainEvent(event, state);
-        eventStoreEntityRepository.save(new EventStoreEntity(state.getId(), event));
-
+        var eventStore = eventStoreEntityRepository.save(new EventStoreEntity(state.getId(), event));
 
         return state.getId();
     }
@@ -47,12 +53,15 @@ public class ApplicationForALoanCmdFacade {
     }
 
     public void sendRequestForLoanStart(SendRequestForLoanStartCmd cmd) {
-        applicationForALoanEntityRepository.findOneById(cmd.id())
-                .map(it -> new Profunctor<>(it, it))
-                .orElseThrow()
-                .mapFirst(domainFactory::newApplicationForALoan)
-                .mapFirst(ApplicationForALoan::sendRequestForLoanStart)
-                .accept((first, second) -> applicationForALoanEntityRepository.save(second, first));
+        var state = applicationForALoanEntityRepository.findOneById(cmd.id())
+                .orElseThrow();
+
+        var event = Optional.ofNullable(domainFactory.newApplicationForALoan(state))
+                .map(ApplicationForALoan::sendRequestForLoanStart)
+                .orElseThrow();
+        eventStoreEntityRepository.findById(cmd.id())
+                .ifPresent(eventStoreEntityRepository::save);
+        applicationForALoanEntityRepository.save(state, event);
     }
 
     public void sendCommunicationAboutStartedLoan(SendCommunicationAboutStartedLoanCmd cmd) {

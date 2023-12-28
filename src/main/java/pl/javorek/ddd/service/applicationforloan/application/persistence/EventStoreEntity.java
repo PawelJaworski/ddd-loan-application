@@ -1,11 +1,11 @@
 package pl.javorek.ddd.service.applicationforloan.application.persistence;
 
-import jakarta.persistence.Convert;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
 
 import java.util.ArrayList;
@@ -20,14 +20,16 @@ public class EventStoreEntity {
     @Getter
     private UUID id;
 
-    @Convert(converter = EventStoreJsonConverter.class)
-    private List<DomainEventJpaWrapper> domainEvents = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @Fetch(FetchMode.JOIN)
+    private List<DomainEventEntity> domainEvents = new ArrayList<>();
 
-    public EventStoreEntity(UUID id) {
+    public EventStoreEntity(UUID id, DomainEvent domainEvent) {
         this.id = id;
+        this.addEvent(domainEvent);
     }
 
     public void addEvent(DomainEvent domainEvent) {
-        domainEvents.add(new DomainEventJpaWrapper(domainEvent));
+        domainEvents.add(new DomainEventEntity(domainEvent));
     }
 }
