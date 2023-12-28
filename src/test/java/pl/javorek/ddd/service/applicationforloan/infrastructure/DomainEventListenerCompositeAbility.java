@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.infrastructure.config;
+package pl.javorek.ddd.service.applicationforloan.infrastructure;
 
 import pl.javorek.ddd.service.applicationforloan.application.command.AuditProjectionAbility;
 import pl.javorek.ddd.service.applicationforloan.application.eventlistener.ExternalEventPublisherAbility;

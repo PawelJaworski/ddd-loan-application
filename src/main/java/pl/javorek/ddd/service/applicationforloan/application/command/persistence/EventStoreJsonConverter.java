@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 @Slf4j
-public class EventStoreJsonConverter implements AttributeConverter<DomainEventJpaWrapper, String> {
+class EventStoreJsonConverter implements AttributeConverter<DomainEventJpaWrapper, String> {
 
   private final ObjectMapper objectMapper;
 

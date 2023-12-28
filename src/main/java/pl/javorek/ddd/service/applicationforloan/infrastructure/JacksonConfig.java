@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.infrastructure.jackson;
+package pl.javorek.ddd.service.applicationforloan.infrastructure;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
