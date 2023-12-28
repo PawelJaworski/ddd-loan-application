@@ -1,8 +1,8 @@
 package pl.javorek.ddd.service.applicationforloan.application
 
 import pl.javorek.ddd.service.applicationforloan.application.command.ApplicationForALoanCmdFacadeAbility
+import pl.javorek.ddd.service.applicationforloan.application.command.BankAgentPolicyAbility
 import pl.javorek.ddd.service.applicationforloan.application.persistence.ApplicationForALoanEntityRepositoryAbility
-import pl.javorek.ddd.service.applicationforloan.domain.BankAgentPolicyAbility
 import spock.lang.Specification
 
 import static pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationStatusType.DRAFT

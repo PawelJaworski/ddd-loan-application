@@ -1,4 +1,4 @@
-package pl.javorek.ddd.service.applicationforloan.application.config;
+package pl.javorek.ddd.service.applicationforloan.application.command;
 
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,7 @@ import pl.javorek.ddd.service.applicationforloan.domain.valueobject.ApplicationN
 @Component
 @Builder
 @RequiredArgsConstructor
-public class ApplicationNumberDBPolicy implements ApplicationNumberPolicy {
+class ApplicationNumberDBPolicy implements ApplicationNumberPolicy {
     private final ApplicationForALoanEntityRepository applicationForALoanEntityRepository;
 
     @Override

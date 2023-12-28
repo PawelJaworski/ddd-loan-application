@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import pl.javorek.ddd.service.applicationforloan.application.command.ApplicationForALoanCmdFacade
 import pl.javorek.ddd.service.applicationforloan.application.command.ApplicationForALoanCmdFacadeAbility
-import pl.javorek.ddd.service.applicationforloan.domain.BankAgentPolicyAbility
+import pl.javorek.ddd.service.applicationforloan.application.command.BankAgentPolicyAbility
 import spock.lang.Specification
 
 @SpringBootTest
