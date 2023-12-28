@@ -22,7 +22,7 @@ public class ExternalEventPublisher implements DomainEventListener {
     @SneakyThrows
     public void onDomainEvent(DomainEvent event, ApplicationForALoanEntity state) {
         var message = applicationForALoanDocumentMapper.map(state);
-        var outbox = new KafkaOutbox(state.getId(), new KafkaMessage(LocalDateTime.now(), message));
+        var outbox = new KafkaOutbox(state.getId(), message);
 
         kafkaOutboxRepository.save(outbox);
 

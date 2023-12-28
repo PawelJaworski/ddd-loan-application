@@ -5,6 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import pl.javorek.ddd.service.applicationforloan.application.command.ApplicationForALoanCmdFacade
 import pl.javorek.ddd.service.applicationforloan.application.command.ApplicationForALoanCmdFacadeAbility
 import pl.javorek.ddd.service.applicationforloan.application.command.BankAgentPolicyAbility
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.contract.ApplicationForALoanDocument
 import spock.lang.Specification
 
 @SpringBootTest
@@ -12,6 +13,9 @@ class ExternalEventIntegrationTest extends Specification implements ApplicationF
 
     @Autowired
     ApplicationForALoanCmdFacade applicationForALoanCmdFacade
+
+    @Autowired
+    KafkaOutboxRepository kafkaOutboxRepository
 
     def setup() {
         log_as_bank_agent()
@@ -22,7 +26,6 @@ class ExternalEventIntegrationTest extends Specification implements ApplicationF
         def id = loan_application_submitted()
 
         then:
-        true
-
+        def outbox = kafkaOutboxRepository.findById(id).orElseThrow()
     }
 }

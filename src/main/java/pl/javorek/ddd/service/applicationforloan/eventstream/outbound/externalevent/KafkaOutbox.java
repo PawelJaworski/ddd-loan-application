@@ -8,6 +8,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.javorek.ddd.service.applicationforloan.eventstream.outbound.externalevent.contract.ApplicationForALoanDocument;
 
 import java.util.UUID;
 
@@ -20,6 +21,6 @@ public class KafkaOutbox {
     private UUID id;
 
     @Column(length = 4064)
-    @Convert(converter = KafkaMessageJsonConverter.class)
-    private KafkaMessage message;
+    @Convert(converter = ApplicationForALoanDocumentJsonConverter.class)
+    private ApplicationForALoanDocument message;
 }
