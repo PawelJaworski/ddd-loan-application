@@ -47,7 +47,9 @@ public class ApplicationForALoanCmdFacade {
         var event = Optional.ofNullable(domainFactory.newApplicationForALoan(state))
                 .map(ApplicationForALoan::sendRequestForLoanStart)
                 .orElseThrow();
+
         applicationForALoanEntityRepository.save(state, event);
+        domainEventListenerComposite.onDomainEvent(event, state);
     }
 
     public void sendCommunicationAboutStartedLoan(SendCommunicationAboutStartedLoanCmd cmd) {
@@ -58,6 +60,7 @@ public class ApplicationForALoanCmdFacade {
                 .map(ApplicationForALoan::sendClientCommunicationForStartedLoan)
                 .orElseThrow();
 
+        applicationForALoanEntityRepository.save(state, event);
         domainEventListenerComposite.onDomainEvent(event, state);
     }
 }
