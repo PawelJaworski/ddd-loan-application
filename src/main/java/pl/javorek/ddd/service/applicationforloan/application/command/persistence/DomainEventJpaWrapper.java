@@ -10,6 +10,8 @@ import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent.Communicatio
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent.LoanApplicationSubmitted;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent.RequestForLoanStartSent;
 
+import java.util.Optional;
+
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -26,5 +28,12 @@ public class DomainEventJpaWrapper {
         } else if (domainEvent instanceof CommunicationAboutStartedLoanSent communicationAboutStartedLoanSent) {
             this.communicationAboutStartedLoanSent = communicationAboutStartedLoanSent;
         }
+    }
+
+    public DomainEvent domainEvent() {
+        return Optional.ofNullable(loanApplicationSubmitted)
+                .flatMap(it -> Optional.ofNullable(requestForLoanStartSent))
+                .flatMap(it ->Optional.ofNullable(communicationAboutStartedLoanSent))
+                .orElse(null);
     }
 }
