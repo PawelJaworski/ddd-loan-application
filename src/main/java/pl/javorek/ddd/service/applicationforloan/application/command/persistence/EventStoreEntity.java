@@ -32,4 +32,11 @@ public class EventStoreEntity {
     public void addEvent(DomainEvent domainEvent) {
         domainEvents.add(new DomainEventEntity(domainEvent));
     }
+
+    public List<DomainEvent> getDomainEvents() {
+        return domainEvents.stream()
+                .map(DomainEventEntity::getEventWrapper)
+                .map(DomainEventJpaWrapper::domainEvent)
+                .toList();
+    }
 }

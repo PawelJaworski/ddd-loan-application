@@ -5,6 +5,7 @@ import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.javorek.ddd.service.applicationforloan.domain.DomainEvent;
 
@@ -18,6 +19,7 @@ public class DomainEventEntity {
 
     @Convert(converter = EventStoreJsonConverter.class)
     @Column(length = 4064)
+    @Getter
     private DomainEventJpaWrapper eventWrapper;
 
     public DomainEventEntity(DomainEvent domainEvent) {
